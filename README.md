@@ -10,9 +10,30 @@ ClimatExEval provides tools to evaluate downscaled climate variables across mult
 - **Temporal**: Time series characteristics
 - **Multivariate**: Cross-variable relationships
 
-## Installation
+## 💽 Installation
+
+Clone this repository:
 
 ```bash
-git clone https://github.com/Climagination/ClimatExEval.git
+git clone https://github.com/climagination/ClimatExEval.git
 cd ClimatExEval
+```
+
+(Optional but recommended) Create and activate a virtual environment:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt` 
+```
+
+Install the package in editable mode:
+
+```bash
 pip install -e .
+```

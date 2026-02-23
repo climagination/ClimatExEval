@@ -1,0 +1,14 @@
+numpy
+matplotlib
+scipy
+xarray
+dask
+zarr
+netCDF4
+torch
+seaborn
+cartopy
+pyyaml
+pandas
+jupyter
+notebook
