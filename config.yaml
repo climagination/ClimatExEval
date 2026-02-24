@@ -1,0 +1,50 @@
+# Project metadata
+project_name: "uas_evaluation"
+description: "Evaluation of GAN-downscaled uas winds"
+
+# Data configuration
+data:
+  predicted:
+    path: "/home/sbeairsto/data-sbeairsto/van_isle_128/trained_generators/hr_inf_generator_bs_64_ns_6_lr_00025_drif_pen_uas.zarr"
+    format: "zarr"  # zarr, netcdf, or pt
+    variables:
+      - uas
+    ensemble_method: "select"  # mean, median, select, or keep
+  
+  reference:
+    path: /home/sbeairsto/data-sbeairsto/van_isle_128/uas_validation_hr.zarr
+    format: "zarr"
+    variables:
+      - uas
+    variable_mapping:
+      uas: uas
+
+# Domain subsetting (optional - comment out to use full domain)
+# domain:
+#   lat_range: [30, 50]
+#   lon_range: [-120, -100]
+#   time_range: ["2000-01-01", "2020-12-31"]
+
+# Metrics to compute
+metrics:
+  marginal:
+    - bias
+    - quantile_comparison
+  spatial:
+    - spatial_correlation
+  temporal:
+    - temporal_autocorrelation
+  multivariate: []
+
+# Computation settings
+compute:
+  use_dask: true
+  n_workers: 4
+  chunk_size: "auto"
+
+# Output settings
+output:
+  dir: "./results"
+  save_intermediate: true
+  formats: ["png"]
+  dpi: 300

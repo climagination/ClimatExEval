@@ -1,0 +1,48 @@
+# Example configuration for ClimatExEval
+project_name: "example_evaluation"
+description: "Simple test evaluation"
+
+# Data paths
+data:
+  predicted:
+    path: "./examples/sample_data/predicted.zarr"
+    format: "zarr"
+    variables:
+      - temperature
+  
+  reference:
+    path: "./examples/sample_data/reference.nc"
+    format: "netcdf"
+    variables:
+      - temp
+    variable_mapping:
+      temp: temperature
+
+# Domain (optional)
+domain:
+  lat_range: [35, 45]
+  lon_range: [-125, -115]
+  time_range: ["2010-01-01", "2015-12-31"]
+
+# Metrics
+metrics:
+  marginal:
+    - bias
+    - quantile_comparison
+  spatial:
+    - spatial_correlation
+  temporal:
+    - temporal_autocorrelation
+
+# Computation
+compute:
+  use_dask: true
+  n_workers: 2
+  chunk_size: "auto"
+
+# Output
+output:
+  dir: "./examples/results"
+  save_intermediate: true
+  formats: ["png"]
+  dpi: 150
