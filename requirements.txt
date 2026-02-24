@@ -12,3 +12,4 @@ pyyaml
 pandas
 jupyter
 notebook
+hydra-core
