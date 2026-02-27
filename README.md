@@ -37,3 +37,6 @@ Install the package in editable mode:
 ```bash
 pip install -e .
 ```
+
+## List of metrics of interest
+https://docs.google.com/document/d/1x3kdlWl1QjaxwLWncEikmhnUHU4Lw1ot1yXJ2EzYN78/edit?usp=sharing
