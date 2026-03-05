@@ -11,7 +11,7 @@ ClimatExEval provides tools to evaluate downscaled climate variables across mult
 - **Multivariate**: Cross-variable relationships
 
 ## Example
-See https://github.com/climagination/ClimatExEval/blob/main/notebooks/01_evaluate_single_model.ipynb for example notebook implementation. 
+See [notebook1](https://github.com/climagination/ClimatExEval/blob/main/notebooks/01_evaluate_single_model.ipynb) for example notebook implementation. 
 
 ## 💽 Installation
 
