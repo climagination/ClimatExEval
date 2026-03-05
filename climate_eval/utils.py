@@ -28,16 +28,16 @@ def detect_dimension_names(ds: xr.Dataset) -> dict:
     """
     dim_map = {}
     
-    # Latitude
-    for lat_name in ['lat', 'latitude', 'y', 'rlat']:
+    # rotated latitude index (rlat)
+    for lat_name in ['y', 'rlat']:
         if lat_name in ds.dims:
-            dim_map['lat'] = lat_name
+            dim_map['rlat'] = lat_name
             break
     
-    # Longitude
-    for lon_name in ['lon', 'longitude', 'x', 'rlon']:
+    # rotated longitude index (rlon)
+    for lon_name in ['x', 'rlon']:
         if lon_name in ds.dims:
-            dim_map['lon'] = lon_name
+            dim_map['rlon'] = lon_name
             break
     
     # Time
@@ -51,23 +51,23 @@ def detect_dimension_names(ds: xr.Dataset) -> dict:
 
 def standardize_dimension_names(ds: xr.Dataset) -> xr.Dataset:
     """
-    Rename dimensions to standard names (lat, lon, time).
-    
+    Rename dimensions to standard names (rlat, rlon, time).
+
     Args:
         ds: Input dataset
-        
+
     Returns:
         Dataset with standardized dimension names
     """
     dim_map = detect_dimension_names(ds)
-    
+
     # Invert the map for renaming
     rename_dict = {v: k for k, v in dim_map.items() if v != k}
-    
+
     if rename_dict:
         logging.info(f"Renaming dimensions: {rename_dict}")
         ds = ds.rename(rename_dict)
-    
+
     return ds
 
 
@@ -78,22 +78,22 @@ def handle_ensemble_dimension(
 ) -> xr.Dataset:
     """
     Handle ensemble/realization dimension in stochastic model output.
-    
+
     Args:
         ds: Dataset potentially with realization dimension
         method: How to handle ensemble ('mean', 'median', 'select', or 'keep')
         realization_dim: Name of realization dimension
-        
+
     Returns:
         Dataset with realization dimension handled
     """
     if realization_dim not in ds.dims:
         logging.info(f"   No '{realization_dim}' dimension found")
         return ds
-    
+
     n_realizations = ds.sizes[realization_dim]
     logging.info(f"   Found {n_realizations} realizations")
-    
+
     if method == 'mean':
         logging.info(f"   Taking ensemble mean")
         return ds.mean(dim=realization_dim)
