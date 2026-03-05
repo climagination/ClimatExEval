@@ -69,3 +69,37 @@ def quantile_comparison(
         'reference': ref_q,
         'difference': pred_q - ref_q
     })
+
+
+def qq_data(
+    pred: xr.DataArray,
+    ref: xr.DataArray,
+    n_quantiles: int = 1000
+) -> xr.Dataset:
+    """
+    Compute quantile-quantile comparison data.
+    
+    Args:
+        pred: Predicted values
+        ref: Reference values
+        n_quantiles: Number of quantiles to compute
+        
+    Returns:
+        Dataset with predicted and reference quantile values
+    """
+    pred_flat = pred.values.flatten()
+    ref_flat = ref.values.flatten()
+    
+    # Remove NaNs
+    pred_flat = pred_flat[~np.isnan(pred_flat)]
+    ref_flat = ref_flat[~np.isnan(ref_flat)]
+    
+    # Compute quantiles
+    quantile_levels = np.linspace(0, 1, n_quantiles)
+    pred_quantiles = np.quantile(pred_flat, quantile_levels)
+    ref_quantiles = np.quantile(ref_flat, quantile_levels)
+    
+    return xr.Dataset({
+        'predicted': (['quantile'], pred_quantiles),
+        'reference': (['quantile'], ref_quantiles),
+    }, coords={'quantile': quantile_levels})

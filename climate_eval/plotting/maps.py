@@ -48,6 +48,8 @@ def plot_spatial_field(
     
     # Plot data
     im = data.plot(
+        x='lon',
+        y='lat',
         ax=ax,
         cmap=cmap,
         vmin=vmin,

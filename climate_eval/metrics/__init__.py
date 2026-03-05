@@ -7,6 +7,7 @@ Import all metric functions for easy access.
 from climate_eval.metrics.marginal import (
     bias,
     quantile_comparison,
+    qq_data,
 )
 
 # Spatial metrics
@@ -23,6 +24,7 @@ __all__ = [
     # Marginal
     'bias',
     'quantile_comparison',
+    'qq_data',
     # Spatial
     'spatial_correlation',
     # Temporal

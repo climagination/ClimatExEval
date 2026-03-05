@@ -5,7 +5,7 @@ description: "Evaluation of GAN-downscaled uas winds"
 # Data configuration
 data:
   predicted:
-    path: "/home/sbeairsto/data-sbeairsto/van_isle_128/trained_generators/hr_inf_generator_bs_64_ns_6_lr_00025_drif_pen_uas.zarr"
+    path: "/home/sbeairsto/data-sbeairsto/van_isle_128/trained_generators/hr_inf_uas_generator_bs_64_ns_6_lr_00025_drif_pen.zarr"
     format: "zarr"  # zarr, netcdf, or pt
     variables:
       - uas
