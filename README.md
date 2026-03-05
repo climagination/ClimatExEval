@@ -10,6 +10,9 @@ ClimatExEval provides tools to evaluate downscaled climate variables across mult
 - **Temporal**: Time series characteristics
 - **Multivariate**: Cross-variable relationships
 
+## Example
+See https://github.com/climagination/ClimatExEval/blob/main/notebooks/01_evaluate_single_model.ipynb for example notebook implementation. 
+
 ## 💽 Installation
 
 Clone this repository:
